@@ -1,0 +1,27 @@
+influx:
+    url: http://localhost:8086
+    database: diskspace
+    username: root
+    password: DiS357BKSpa3cE
+    consistency: ALL
+    retentionPolicies:
+        - name: hour_data
+          duration: 4w
+          defaultPolicy: true
+        - name: day_data
+          duration: 16w
+          defaultPolicy: false
+    continuousQueries:
+        day:
+            selectValue: mean(value) AS value, min(value) AS min_value, max(value) AS max_value
+            intoPolicyName: day_data
+            fromPolicyName: hour_data
+            groupByTimeValue: time(1d)
+
+monitoredPath:
+    - /home/eardeleanu
+
+cronExpression:
+    databaseCreationCron : timer://runOnce?repeatCount=1
+    continuousQueryCreationCron : timer://timerName?delay=600000&fixedRate=true&period=10800000
+    retrieveMonitoringInfoCron : timer://writeMetricTimer?delay=30000&fixedRate=true&period=180000

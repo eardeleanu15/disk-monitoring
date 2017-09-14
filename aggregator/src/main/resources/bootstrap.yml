@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: Monitoring
+server:
+  port: 8089
+# Application yml file could be found locally
+# Spring Cloud Config Server is disabled
+
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: false
+#        serviceId:
+#    inetutils:
+#      ignored-interfaces: vlan*, lo*
+
+# Eureka discovery is disabled
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone:
+#  instance:
+#    instanceId: ${random.value}
+#    preferIpAddress: true

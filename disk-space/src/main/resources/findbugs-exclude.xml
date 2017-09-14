@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <Bug pattern="CRLF_INJECTION_LOGS"/>
+    </Match>
+
+    <Match>
+        <!--File(...) reads a file whose location might be specified by user input
+        Reading from those paths is for diskspace monitoring and they should be externally configurable
+        -->
+        <Class name="com.monitoring.diskspace.service.DiskSpaceService"/>
+        <Bug pattern="PATH_TRAVERSAL_IN"/>
+    </Match>
+
+</FindBugsFilter>

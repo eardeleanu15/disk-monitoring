@@ -1,0 +1,10 @@
+docker:
+    base:
+        image:
+            name: docker-registry.monitoring.org/monitoring/monitoringdocker:8-alpine
+    image:
+        name: monitoring
+        prefix: docker-registry.monitoring.org
+    opts: '"-server", "-Xms2G", "-Xmx2G", "-XX:+UseG1GC", "-XX:+UseTLAB", "-XX:+UseNUMA",
+        "-XX:+AggressiveOpts", "-XX:+UseCompressedOops", "-XX:+OptimizeStringConcat"'
+    port: 8501
